@@ -5,3 +5,5 @@ endif
 libv4l_mplane_la_SOURCES = libv4l-mplane.c
 libv4l_mplane_la_CPPFLAGS = $(CFLAG_VISIBILITY)
 libv4l_mplane_la_LDFLAGS = -avoid-version -module -shared -export-dynamic -lpthread
+
+EXTRA_DIST = meson.build

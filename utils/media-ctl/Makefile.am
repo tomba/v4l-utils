@@ -28,3 +28,5 @@ bin_PROGRAMS = media-ctl
 media_ctl_SOURCES = media-ctl.c options.c options.h tools.h
 media_ctl_LDADD = libmediactl.la libv4l2subdev.la
 media_ctl_CFLAGS = $(GIT_COMMIT_CNT)
+
+EXTRA_DIST = meson.build

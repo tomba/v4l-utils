@@ -62,4 +62,5 @@ EXTRA_DIST = \
 	test-media \
 	test-media-unload.pl \
 	vim2m_test_with_gstreamer.sh \
-	vim2m_test_with_qvidcap.sh
+	vim2m_test_with_qvidcap.sh \
+	meson.build

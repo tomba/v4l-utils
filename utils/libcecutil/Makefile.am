@@ -21,4 +21,4 @@ gen.intermediate: cec-gen.pl $(CEC_GEN_PREREQS)
 clean-local:
 	-rm -vf $(CEC_GEN_HDRS)
 
-EXTRA_DIST = cec-gen.pl
+EXTRA_DIST = cec-gen.pl meson.build

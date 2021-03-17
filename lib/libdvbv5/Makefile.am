@@ -123,4 +123,4 @@ libdvbv5_la_CPPFLAGS = -I../.. $(ENFORCE_LIBDVBV5_STATIC) $(LIBUDEV_CFLAGS) $(PT
 libdvbv5_la_LDFLAGS = $(LIBDVBV5_VERSION) $(ENFORCE_LIBDVBV5_STATIC) $(LIBUDEV_LIBS) -lm -lrt
 libdvbv5_la_LIBADD = $(LTLIBICONV)
 
-EXTRA_DIST = README gen_dvb_structs.pl
+EXTRA_DIST = README gen_dvb_structs.pl meson.build

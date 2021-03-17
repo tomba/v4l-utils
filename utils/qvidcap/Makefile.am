@@ -16,7 +16,8 @@ qvidcap_LDFLAGS += $(ALSA_LIBS) -pthread
 
 EXTRA_DIST = qvidcap_24x24.png qvidcap_64x64.png qvidcap.png qvidcap.svg \
   qvidcap_16x16.png qvidcap_32x32.png qvidcap.desktop \
-  qvidcap.qrc qvidcap.pro qvidcap.1 v4l2-convert.glsl v4l2-convert.pl
+  qvidcap.qrc qvidcap.pro qvidcap.1 v4l2-convert.glsl v4l2-convert.pl \
+  meson.build
 
 clean-local:
 	-rm -vf moc_*.cpp qrc_*.cpp qrc_*.o ui_*.h v4l2-convert.h formats.h
