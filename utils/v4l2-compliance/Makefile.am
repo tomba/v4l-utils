@@ -23,7 +23,7 @@ v4l2_compliance_LDADD = -lrt -lpthread
 DEFS += -DNO_LIBV4L2
 endif
 
-EXTRA_DIST = Android.mk fixme.txt v4l2-compliance.1
+EXTRA_DIST = Android.mk fixme.txt v4l2-compliance.1 meson.build
 
 nodist_v4l2_compliance_32_SOURCES = v4l2-compliance-32.c
 

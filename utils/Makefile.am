@@ -33,4 +33,4 @@ if WITH_QVIDCAP
 SUBDIRS += qvidcap
 endif
 
-EXTRA_DIST = common
+EXTRA_DIST = common meson.build gen_media_bus_format_codes.sh gen_media_bus_format_names.sh

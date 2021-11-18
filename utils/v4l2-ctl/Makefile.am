@@ -41,4 +41,4 @@ v4l2-ctl-32$(EXEEXT): $(addprefix $(top_srcdir)/utils/v4l2-ctl/,$(v4l2_ctl_SOURC
 	$(CXXCOMPILE) -static -m32 -DNO_LIBV4L2 -o $@ -I$(top_srcdir) -I$(top_srcdir)/include $(v4l2_ctl_CPPFLAGS) $(addprefix $(top_srcdir)/utils/v4l2-ctl/,$(filter %.cpp,$(v4l2_ctl_SOURCES))) $@.o
 	rm -f $@.c $@.o
 
-EXTRA_DIST = Android.mk v4l2-ctl.1
+EXTRA_DIST = Android.mk v4l2-ctl.1 meson.build

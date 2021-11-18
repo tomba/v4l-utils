@@ -22,4 +22,5 @@ EXTRA_DIST = \
 	parsers \
 	pci_traffic \
 	v4l_rec.pl \
-	lircd2toml.py
+	lircd2toml.py \
+	meson.build

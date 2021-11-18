@@ -10,4 +10,4 @@ SUBDIRS += \
 	libdvbv5
 endif
 
-EXTRA_DIST = Android.mk
+EXTRA_DIST = Android.mk meson.build

@@ -26,4 +26,4 @@ v4l1compat_la_LIBADD = libv4l1.la
 v4l1compat_la_LDFLAGS = -avoid-version -module -shared -export-dynamic
 v4l1compat_la_LIBTOOLFLAGS = --tag=disable-static
 
-EXTRA_DIST = libv4l1-kernelcode-license.txt
+EXTRA_DIST = libv4l1-kernelcode-license.txt meson.build

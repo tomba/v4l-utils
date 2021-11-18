@@ -5,4 +5,4 @@ cec_compliance_SOURCES = cec-compliance.cpp cec-compliance.h cec-test.cpp cec-te
 cec_compliance_CPPFLAGS = -I$(top_srcdir)/utils/libcecutil $(GIT_SHA) $(GIT_COMMIT_CNT) $(GIT_COMMIT_DATE)
 cec_compliance_LDADD = -lrt ../libcecutil/libcecutil.la
 
-EXTRA_DIST = cec-compliance.1
+EXTRA_DIST = cec-compliance.1 meson.build

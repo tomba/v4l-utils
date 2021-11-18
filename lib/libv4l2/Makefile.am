@@ -29,4 +29,4 @@ v4l2convert_la_LIBADD = libv4l2.la
 v4l2convert_la_LDFLAGS = -avoid-version -module -shared -export-dynamic
 v4l2convert_la_LIBTOOLFLAGS = --tag=disable-static
 
-EXTRA_DIST = Android.mk v4l2-plugin-android.c
+EXTRA_DIST = Android.mk v4l2-plugin-android.c meson.build
