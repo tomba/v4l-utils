@@ -6,6 +6,7 @@ cec_compliance_sources = files(
     'cec-test-fuzzing.cpp',
     'cec-test-power.cpp',
     'cec-test.cpp',
+    'cec-test-tuner-record-timer.cpp',
 )
 
 cec_compliance_deps = [

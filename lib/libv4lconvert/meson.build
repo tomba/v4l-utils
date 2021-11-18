@@ -7,7 +7,7 @@ libv4lconvert_sources = files(
     'crop.c',
     'flip.c',
     'helper-funcs.h',
-    'hm12.c',
+    'nv12_16l16.c',
     'jidctflt.c',
     'jl2005bcd.c',
     'jpeg.c',

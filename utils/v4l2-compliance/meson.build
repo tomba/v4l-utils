@@ -13,6 +13,7 @@ v4l2_compliance_sources = files(
     'v4l2-test-io-config.cpp',
     'v4l2-test-media.cpp',
     'v4l2-test-subdevs.cpp',
+    'v4l2-test-time32-64.cpp',
 )
 
 v4l2_compliance_deps = [

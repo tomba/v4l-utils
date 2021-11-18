@@ -37,7 +37,7 @@ conf.set('PATCH', as_patch_version)
 common_arguments = [
     '-Wpointer-arith',
     '-D_GNU_SOURCE',
-    '-I.', # Needed for config.h
+    '-I' + meson.global_build_root(), # Needed for config.h
     '-DPROMOTED_MODE_T=int',
     '-DENABLE_NLS',
 ]
@@ -82,12 +82,12 @@ endif
 
 dep_sdl = dependency('SDL2', required: false)
 if not dep_sdl.found()
-    dep_sdl = cc.find_library('SDL2', has_headers: 'SDL2/SDL.h')
+    dep_sdl = cc.find_library('SDL2', has_headers: 'SDL2/SDL.h', required: false)
 endif
 
 dep_sdl_image = dependency('SDL2_image', required: false)
 if not dep_sdl_image.found()
-    dep_sdl_image = cc.find_library('SDL2_image', has_headers: 'SDL2/SDL_image.h')
+    dep_sdl_image = cc.find_library('SDL2_image', has_headers: 'SDL2/SDL_image.h', required: false)
 endif
 
 dep_threads = dependency('threads')

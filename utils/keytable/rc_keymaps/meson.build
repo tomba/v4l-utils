@@ -115,7 +115,6 @@ ir_keytable_rc_keymaps = files(
     'snapstream_firefly.toml',
     'streamzap.toml',
     'su3000.toml',
-    'tango.toml',
     'tanix_tx3mini.toml',
     'tanix_tx5max.toml',
     'tbs_nec.toml',
