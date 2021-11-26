@@ -876,6 +876,47 @@ struct media_pad *media_parse_pad(struct media_device *media,
 	return &entity->pads[pad];
 }
 
+struct media_pad *media_parse_pad_stream(struct media_device *media,
+					 const char *p, unsigned int *stream,
+					 char **endp)
+{
+	struct media_pad *pad;
+	const char *orig_p = p;
+	char *ep;
+
+	pad = media_parse_pad(media, p, &ep);
+	if (pad == NULL)
+		return NULL;
+
+	p = ep;
+
+	if (*p == '/') {
+		unsigned int s;
+
+		p++;
+
+		s = strtoul(p, &ep, 10);
+
+		if (ep == p) {
+			printf("Unable to parse stream: '%s'\n", orig_p);
+			if (endp)
+				*endp = (char*)p;
+			return NULL;
+		}
+
+		*stream = s;
+
+		p++;
+	} else {
+		*stream = 0;
+	}
+
+	if (endp)
+		*endp = (char*)p;
+
+	return pad;
+}
+
 struct media_link *media_parse_link(struct media_device *media,
 				    const char *p, char **endp)
 {
