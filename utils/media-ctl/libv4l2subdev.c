@@ -221,15 +221,15 @@ int v4l2_subdev_get_routing(struct media_entity *entity,
 			    struct v4l2_subdev_route **routes,
 			    unsigned int *num_routes)
 {
-	struct v4l2_subdev_routing routing = { 0 };
+	struct v4l2_subdev_routing routing = {
+		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
+	};
 	struct v4l2_subdev_route *r;
 	int ret;
 
 	ret = v4l2_subdev_open(entity);
 	if (ret < 0)
 		return ret;
-
-	routing.which = V4L2_SUBDEV_FORMAT_ACTIVE;
 
 	ret = ioctl(entity->fd, VIDIOC_SUBDEV_G_ROUTING, &routing);
 	if (ret == -1 && errno != ENOSPC)
@@ -386,7 +386,6 @@ static int v4l2_subdev_parse_setup_route(struct media_device *media,
 	/* sink pad/stream */
 
 	r->sink_pad = strtoul(p, &end, 10);
-
 	if (*end != '/') {
 		media_dbg(media, "Expected '/'\n");
 		return -EINVAL;
@@ -407,7 +406,6 @@ static int v4l2_subdev_parse_setup_route(struct media_device *media,
 	/* source pad/stream */
 
 	r->source_pad = strtoul(p, &end, 10);
-
 	if (*end != '/') {
 		media_dbg(media, "Expected '/'\n");
 		return -EINVAL;
@@ -431,7 +429,6 @@ static int v4l2_subdev_parse_setup_route(struct media_device *media,
 	p = end;
 
 	r->flags = strtoul(p, &end, 0);
-
 	if (r->flags & ~(V4L2_SUBDEV_ROUTE_FL_ACTIVE)) {
 		media_dbg(media, "Bad route flags %#x\n", r->flags);
 		return -EINVAL;

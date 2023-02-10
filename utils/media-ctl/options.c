@@ -105,7 +105,7 @@ static void usage(const char *argv0)
 	printf("\tpad-number      Pad numeric identifier\n");
 	printf("\tstream-number   Stream numeric identifier\n");
 	printf("\tflags           Link flags (0: inactive, 1: active)\n");
-	printf("\troute-flags     Route flags (bitmask of route flags: active - 0x1, immutable - 0x2, source - 0x4)\n");
+	printf("\troute-flags     Route flags (bitmask of route flags: active - 0x1)\n");
 	printf("\tfcc             Format FourCC\n");
 	printf("\twidth           Image width in pixels\n");
 	printf("\theight          Image height in pixels\n");

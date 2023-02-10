@@ -898,7 +898,7 @@ struct media_pad *media_parse_pad_stream(struct media_device *media,
 		s = strtoul(p, &ep, 10);
 
 		if (ep == p) {
-			printf("Unable to parse stream: '%s'\n", orig_p);
+			media_dbg(media, "Unable to parse stream: '%s'\n", orig_p);
 			if (endp)
 				*endp = (char*)p;
 			return NULL;
