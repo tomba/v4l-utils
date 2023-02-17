@@ -233,6 +233,14 @@ struct v4l2_subdev_routing {
 	__u32 reserved[6];
 };
 
+
+#define V4L2_SUBDEV_CLIENT_CAP_STREAMS		(1U << 0)
+
+struct v4l2_subdev_client_capability {
+	__u64 capabilities;
+	__u32 reserved[6];
+};
+
 /* Backwards compatibility define --- to be removed */
 #define v4l2_subdev_edid v4l2_edid
 
@@ -262,5 +270,8 @@ struct v4l2_subdev_routing {
 #define VIDIOC_SUBDEV_ENUM_DV_TIMINGS		_IOWR('V', 98, struct v4l2_enum_dv_timings)
 #define VIDIOC_SUBDEV_QUERY_DV_TIMINGS		_IOR('V', 99, struct v4l2_dv_timings)
 #define VIDIOC_SUBDEV_DV_TIMINGS_CAP		_IOWR('V', 100, struct v4l2_dv_timings_cap)
+
+#define VIDIOC_SUBDEV_G_CLIENT_CAP		_IOR('V',  101, struct v4l2_subdev_client_capability)
+#define VIDIOC_SUBDEV_S_CLIENT_CAP		_IOWR('V',  102, struct v4l2_subdev_client_capability)
 
 #endif
