@@ -42,6 +42,12 @@
 
 int v4l2_subdev_open(struct media_entity *entity)
 {
+	struct v4l2_subdev_client_capability clientcap = {};
+	struct v4l2_subdev_capability subdevcap = {};
+	bool subdev_streams;
+	bool client_streams;
+	int ret;
+
 	if (entity->fd != -1)
 		return 0;
 
@@ -53,6 +59,16 @@ int v4l2_subdev_open(struct media_entity *entity)
 			  entity->devname);
 		return ret;
 	}
+
+	clientcap.capabilities = V4L2_SUBDEV_CLIENT_CAP_STREAMS;
+
+	ret = ioctl(entity->fd, VIDIOC_SUBDEV_QUERYCAP, &subdevcap);
+	subdev_streams = !ret && (subdevcap.capabilities & V4L2_SUBDEV_CAP_STREAMS);
+
+	ret = ioctl(entity->fd, VIDIOC_SUBDEV_S_CLIENT_CAP, &clientcap);
+	client_streams = !ret && (clientcap.capabilities & V4L2_SUBDEV_CLIENT_CAP_STREAMS);
+
+	entity->supports_streams = subdev_streams && client_streams;
 
 	return 0;
 }
@@ -73,6 +89,11 @@ int v4l2_subdev_get_format(struct media_entity *entity,
 	ret = v4l2_subdev_open(entity);
 	if (ret < 0)
 		return ret;
+
+	if (!entity->supports_streams && stream) {
+		media_dbg(entity->media, "Streams API not supported\n");
+		return -ENOTSUP;
+	}
 
 	memset(&fmt, 0, sizeof(fmt));
 	fmt.pad = pad;
@@ -98,6 +119,11 @@ int v4l2_subdev_set_format(struct media_entity *entity,
 	ret = v4l2_subdev_open(entity);
 	if (ret < 0)
 		return ret;
+
+	if (!entity->supports_streams && stream) {
+		media_dbg(entity->media, "Streams API not supported\n");
+		return -ENOTSUP;
+	}
 
 	memset(&fmt, 0, sizeof(fmt));
 	fmt.pad = pad;
@@ -126,6 +152,11 @@ int v4l2_subdev_get_selection(struct media_entity *entity,
 	ret = v4l2_subdev_open(entity);
 	if (ret < 0)
 		return ret;
+
+	if (!entity->supports_streams && stream) {
+		media_dbg(entity->media, "Streams API not supported\n");
+		return -ENOTSUP;
+	}
 
 	memset(&u.sel, 0, sizeof(u.sel));
 	u.sel.pad = pad;
@@ -165,6 +196,11 @@ int v4l2_subdev_set_selection(struct media_entity *entity,
 	ret = v4l2_subdev_open(entity);
 	if (ret < 0)
 		return ret;
+
+	if (!entity->supports_streams && stream) {
+		media_dbg(entity->media, "Streams API not supported\n");
+		return -ENOTSUP;
+	}
 
 	memset(&u.sel, 0, sizeof(u.sel));
 	u.sel.pad = pad;
@@ -210,6 +246,11 @@ int v4l2_subdev_set_routing(struct media_entity *entity,
 	if (ret < 0)
 		return ret;
 
+	if (!entity->supports_streams) {
+		media_dbg(entity->media, "Streams API not supported\n");
+		return -ENOTSUP;
+	}
+
 	ret = ioctl(entity->fd, VIDIOC_SUBDEV_S_ROUTING, &routing);
 	if (ret == -1)
 		return -errno;
@@ -230,6 +271,9 @@ int v4l2_subdev_get_routing(struct media_entity *entity,
 	ret = v4l2_subdev_open(entity);
 	if (ret < 0)
 		return ret;
+
+	if (!entity->supports_streams)
+		return -ENOTSUP;
 
 	ret = ioctl(entity->fd, VIDIOC_SUBDEV_G_ROUTING, &routing);
 	if (ret == -1 && errno != ENOSPC)
@@ -341,6 +385,11 @@ int v4l2_subdev_get_frame_interval(struct media_entity *entity,
 	if (ret < 0)
 		return ret;
 
+	if (!entity->supports_streams && stream) {
+		media_dbg(entity->media, "Streams API not supported\n");
+		return -ENOTSUP;
+	}
+
 	memset(&ival, 0, sizeof(ival));
 	ival.pad = pad;
 	ival.stream = stream;
@@ -363,6 +412,11 @@ int v4l2_subdev_set_frame_interval(struct media_entity *entity,
 	ret = v4l2_subdev_open(entity);
 	if (ret < 0)
 		return ret;
+
+	if (!entity->supports_streams && stream) {
+		media_dbg(entity->media, "Streams API not supported\n");
+		return -ENOTSUP;
+	}
 
 	memset(&ival, 0, sizeof(ival));
 	ival.pad = pad;
