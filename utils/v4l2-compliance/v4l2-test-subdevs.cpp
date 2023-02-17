@@ -551,3 +551,19 @@ int testSubDevSelection(struct node *node, unsigned which, unsigned pad, unsigne
 
 	return have_sel ? 0 : ENOTTY;
 }
+
+int testSubDevRouting(struct node *node, unsigned which)
+{
+	struct v4l2_subdev_routing routing = {};
+	struct v4l2_subdev_route routes[256] = {};
+
+	routing.which = which;
+	routing.routes = (__u64)&routes;
+	routing.num_routes = 256;
+
+	fail_on_test(doioctl(node, VIDIOC_SUBDEV_G_ROUTING, &routing));
+
+	fail_on_test(doioctl(node, VIDIOC_SUBDEV_S_ROUTING, &routing));
+
+	return 0;
+}
