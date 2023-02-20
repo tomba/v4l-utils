@@ -335,7 +335,7 @@ subdir('lib')
 
 if get_option('v4l-utils')
     subdir('utils')
-    subdir('contrib')
+#    subdir('contrib')
 endif
 
 subdir('doc')
