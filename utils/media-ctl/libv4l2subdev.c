@@ -513,7 +513,8 @@ int v4l2_subdev_parse_setup_routes(struct media_device *media, const char *p)
 
 	ret = v4l2_subdev_set_routing(entity, routes, num_routes);
 	if (ret) {
-		printf("VIDIOC_SUBDEV_S_ROUTING failed: %d\n", ret);
+		media_dbg(entity->media, "VIDIOC_SUBDEV_S_ROUTING failed: %d\n",
+			  ret);
 		goto out;
 	}
 
