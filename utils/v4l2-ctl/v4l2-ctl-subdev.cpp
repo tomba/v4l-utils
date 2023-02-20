@@ -124,9 +124,17 @@ void subdev_usage()
 void subdev_cmd(int ch, char *optarg)
 {
 	char *value, *subs;
+	char *endp;
 
 	switch (ch) {
 	case OptListSubDevMBusCodes:
+		if (optarg) {
+			/* Legacy pad-only parsing */
+			list_mbus_codes_pad = strtoul(optarg, &endp, 0);
+			if (*endp == 0)
+				break;
+		}
+
 		subs = optarg;
 		while (subs && *subs != '\0') {
 			static constexpr const char *subopts[] = {
@@ -209,6 +217,13 @@ void subdev_cmd(int ch, char *optarg)
 		}
 		break;
 	case OptGetSubDevFormat:
+		if (optarg) {
+			/* Legacy pad-only parsing */
+			get_fmt_pad = strtoul(optarg, &endp, 0);
+			if (*endp == 0)
+				break;
+		}
+
 		subs = optarg;
 		while (subs && *subs != '\0') {
 			static constexpr const char *subopts[] = {
@@ -263,6 +278,13 @@ void subdev_cmd(int ch, char *optarg)
 		}
 		break;
 	case OptGetSubDevFPS:
+		if (optarg) {
+			/* Legacy pad-only parsing */
+			get_fps_pad = strtoul(optarg, &endp, 0);
+			if (*endp == 0)
+				break;
+		}
+
 		subs = optarg;
 		while (subs && *subs != '\0') {
 			static constexpr const char *subopts[] = {
